@@ -1,0 +1,4 @@
+Protocolo	Configurações
+HTTP	nome	Protocolo	endereço	método HTTP	código HTTP esperado	intervalo
+PING	nome	Protocolo	endereço	intervalo
+DNS	nome	Protocolo	endereço	intervalo	servidor DNS
