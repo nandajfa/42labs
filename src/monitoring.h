@@ -16,6 +16,32 @@
 #include <stdio.h>
 #include <curl/curl.h>
 
+typedef struct s_http
+{
+	char    *name;
+    char    *protocol;
+    char    *route;
+    char    *method;
+    int status;
+    int interval;
+}	t_http;
+
+typedef struct s_ping
+{
+	char    *name;
+    char    *protocol;
+    char    *route;
+    int     interval;
+}	t_ping;
+
+typedef struct s_dns
+{
+	char    *name;
+    char    *protocol;
+    char    *route;
+    int     interval;
+}	t_dns;
+
 
 
 #endif
