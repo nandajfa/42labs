@@ -6,7 +6,7 @@
 /*   By: jefernan <jefernan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 19:31:41 by jefernan          #+#    #+#             */
-/*   Updated: 2022/07/28 19:33:09 by jefernan         ###   ########.fr       */
+/*   Updated: 2022/08/01 14:17:18 by jefernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_dns
     int     interval;
 }	t_dns;
 
-
+int main(void);
+int http(void);
 
 #endif

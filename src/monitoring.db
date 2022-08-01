@@ -1,4 +1,3 @@
-Protocolo	Configurações
-HTTP	nome	Protocolo	endereço	método HTTP	código HTTP esperado	intervalo
-PING	nome	Protocolo	endereço	intervalo
+intra	HTTP	intra.42.fr	GET	200	120
+game	ping	test	PING	game.42sp.org.br	60
 DNS	nome	Protocolo	endereço	intervalo	servidor DNS
