@@ -13,7 +13,6 @@
 
   Projeto desenvolvido em linguagem C, que monitora serviços web utilizando 3 protocolos: HTTP, PING e DNS. Para cada protocolo, existirão configurações que definem como o monitoramento vai acontecer, assim como o endereço do serviço monitorado. As configurações de monitoramento estarão em um arquivo com nome monitoring.db.
 
---
 
 As configurações para cada protocolo são:
 
@@ -62,8 +61,6 @@ make re
 
 ### :toolbox: Ferramentas utilizadas
 
---
-
 :small_orange_diamond: **LIBCURL**
 
 A libcurl é uma biblioteca de transferência de URL do lado do cliente  para aplicações escritas em C gratuita e fácil de usar. Ela foi escolhida pela facilidade de se encontrar informações e tutoriais sobre seu uso para APIs em C. A libcurl permite receber e processar com facilidade o conteúdo do corpo e do header da requisição através da função curl_easy_setopt().
@@ -78,13 +75,9 @@ Primeiro projeto da 42, onde recodificamos funções da biblioteca C padrão. Al
 
 ### 📑 Planejamento e Referências
 
---
-
 * ➡️ [Notion](https://grizzled-turtle-393.notion.site/42-Labs-2de8c9e246074f83adb3298dcaf3d000)
 
  #### Author
-
---
 
 Made by jessica Fernanda 👋 [See my linkedin](https://www.linkedin.com/in/jessica-fernanda-alves-marques-106651205/)
 
