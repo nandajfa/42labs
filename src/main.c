@@ -6,7 +6,7 @@
 /*   By: jefernan <jefernan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:00:01 by jefernan          #+#    #+#             */
-/*   Updated: 2022/08/02 21:42:23 by jefernan         ###   ########.fr       */
+/*   Updated: 2022/08/03 12:13:10 by jefernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,11 @@ int open_file(t_http *http, t_ping *ping, t_dns *dns)
 	char	**line;
 
 	fd = open("src/monitoring.db", O_RDONLY);
-
+	if (fd < 0)
+	{
+		fprintf(stderr, "Fail to read 'monitoring.db'\n");
+		exit(EXIT_FAILURE);
+	}
 	while (1)
 	{
 		temp = get_next_line(fd);
@@ -43,32 +47,7 @@ int open_file(t_http *http, t_ping *ping, t_dns *dns)
 			printf("ping\n");
 		if (ft_strncmp("DNS", line[1], ft_strlen("DNS")) == 0)
 			printf("dns\n");
-
 		free(temp);
 	}
 	close(fd);
-}
-
-int validation(char *line)
-{
-	int i;
-	int len;
-	char	*str;
-
-	i = 0;
-	len = 0;
-	while (line[i] != '\0')
-	{
-		if (line[i] == '\t')
-			printf("ok");
-		i++;
-	}
-
-	return (0);
-}
-
-char	**str(char *input)
-{
-	printf("2\n");
-	return (ft_split(input, ' '));
 }

@@ -28,6 +28,9 @@ fclean: clean
 		$(RM) $(OBJ_DIR)
 		$(RM) $(NAME)
 
+cleanLog:
+		$(RM) monitoring.log
+
 re: fclean all
 
 .PHONY: all clean fclean re
