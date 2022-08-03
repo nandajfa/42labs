@@ -13,6 +13,7 @@
 
   Projeto desenvolvido em linguagem C, que monitora serviços web utilizando 3 protocolos: HTTP, PING e DNS. Para cada protocolo, existirão configurações que definem como o monitoramento vai acontecer, assim como o endereço do serviço monitorado. As configurações de monitoramento estarão em um arquivo com nome monitoring.db.
 
+--
 
 As configurações para cada protocolo são:
 
@@ -33,7 +34,6 @@ workspaces monitoring	PING	workspaces.42sp.org.br	60
 ```
 
 ## Como usar
-
 **Siga os passos abaixo**
 ```bash
 # Clonar o projeto e acessar a pasta
@@ -62,7 +62,7 @@ make re
 
 ### :toolbox: Ferramentas utilizadas
 
----
+--
 
 :small_orange_diamond: **LIBCURL**
 
@@ -76,14 +76,15 @@ Projeto realizado na 42sp. Usado em algumas funções para leitura de arquivos.
 
 Primeiro projeto da 42, onde recodificamos funções da biblioteca C padrão. Algumas funções dessa biblioteca foram utilizadas.
 
-### :Bookmark Tabs: Planejamento e Referências
+### 📑 Planejamento e Referências
 
----
+--
 
-* "Notion" (https://grizzled-turtle-393.notion.site/42-Labs-2de8c9e246074f83adb3298dcaf3d000)
+* ➡️ [Notion](https://grizzled-turtle-393.notion.site/42-Labs-2de8c9e246074f83adb3298dcaf3d000)
 
  #### Author
 
----
+--
 
 Made by jessica Fernanda 👋 [See my linkedin](https://www.linkedin.com/in/jessica-fernanda-alves-marques-106651205/)
+
