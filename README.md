@@ -34,8 +34,6 @@ workspaces monitoring	PING	workspaces.42sp.org.br	60
 
 ## Como usar
 
----
-
 **Siga os passos abaixo**
 ```bash
 # Clonar o projeto e acessar a pasta
