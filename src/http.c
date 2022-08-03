@@ -6,7 +6,7 @@
 /*   By: jefernan <jefernan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 20:23:37 by jefernan          #+#    #+#             */
-/*   Updated: 2022/08/03 14:27:51 by jefernan         ###   ########.fr       */
+/*   Updated: 2022/08/03 15:28:48 by jefernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int protocol_http(char **line, t_http *http)
 	}
 	fclose(fp);
 	curl_global_cleanup();
+	print_log_http(http);
 	return (0);
 }
 
@@ -54,7 +55,7 @@ void	print_log_http(t_http *http)
 {
 	int fd;
 	char	*temp;
-	char	**line;
+	char	**str_line;
 
 	fd = open("monitoring.log", O_RDONLY);
 	if (fd < 0)
@@ -70,14 +71,15 @@ void	print_log_http(t_http *http)
 		temp = get_next_line(fd);
 		if (temp == NULL)
 			break ;
-		line = ft_split(temp, '\n');
-		if (ft_strncmp("< Location:", *line, ft_strlen("< Location:")) == 0)
-			printf("Adress: %s\n", line[0]);
-		if (ft_strncmp("> GET", line[0], ft_strlen("> GET")) == 0)
-			printf("Method: %s\n", line[0]);
-		if (ft_strncmp("< HTTP", line[0], ft_strlen("< HTTP")) == 0)
-			printf("Status: %s\n", line[0]);
+		str_line = ft_split(temp, '\n');
+		if (ft_strncmp("< Location:", *str_line, ft_strlen("< Location:")) == 0)
+			printf("Adress: %s\n", str_line[0]);
+		if (ft_strncmp("> GET", str_line[0], ft_strlen("> GET")) == 0)
+			printf("Method: %s\n", str_line[0]);
+		if (ft_strncmp("< HTTP", str_line[0], ft_strlen("< HTTP")) == 0)
+			printf("Status: %s\n", str_line[0]);
 		free(temp);
+		free_line(str_line);
 	}
 	close(fd);
 }
