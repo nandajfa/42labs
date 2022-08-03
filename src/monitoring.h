@@ -6,7 +6,7 @@
 /*   By: jefernan <jefernan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 19:31:41 by jefernan          #+#    #+#             */
-/*   Updated: 2022/08/02 22:12:59 by jefernan         ###   ########.fr       */
+/*   Updated: 2022/08/03 14:24:49 by jefernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,6 @@ typedef struct s_http
 	char *name;
 	char *protocol;
 	char *route;
-	char *method;
-	char *status;
-	char *interval;
 } t_http;
 
 typedef struct s_ping
@@ -58,5 +55,6 @@ char	**str(char *input);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		protocol_http(char **line, t_http *http);
 void	init_shttp(char **line, t_http *http);
+void	print_log_http(t_http *http);
 
 #endif

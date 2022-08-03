@@ -6,11 +6,12 @@
 /*   By: jefernan <jefernan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 20:23:37 by jefernan          #+#    #+#             */
-/*   Updated: 2022/08/03 11:59:02 by jefernan         ###   ########.fr       */
+/*   Updated: 2022/08/03 14:27:51 by jefernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "monitoring.h"
+#include "../get_next_line/get_next_line.h"
 
 int protocol_http(char **line, t_http *http)
 {
@@ -47,7 +48,36 @@ void init_shttp(char **line, t_http *http)
 	http->name = line[0];
 	http->protocol = line[1];
 	http->route = line[2];
-	http->method = line[3];
-	http->status = line[4];
-	http->interval = line[5];
+}
+
+void	print_log_http(t_http *http)
+{
+	int fd;
+	char	*temp;
+	char	**line;
+
+	fd = open("monitoring.log", O_RDONLY);
+	if (fd < 0)
+	{
+		fprintf(stderr, "Fail to read 'monitoring.log'\n");
+		exit(EXIT_FAILURE);
+	}
+	printf("=================================monitoring http=================================\n");
+	printf("Name: %s\n", http->name);
+	printf("Protocol: %s\n", http->protocol);
+	while (1)
+	{
+		temp = get_next_line(fd);
+		if (temp == NULL)
+			break ;
+		line = ft_split(temp, '\n');
+		if (ft_strncmp("< Location:", *line, ft_strlen("< Location:")) == 0)
+			printf("Adress: %s\n", line[0]);
+		if (ft_strncmp("> GET", line[0], ft_strlen("> GET")) == 0)
+			printf("Method: %s\n", line[0]);
+		if (ft_strncmp("< HTTP", line[0], ft_strlen("< HTTP")) == 0)
+			printf("Status: %s\n", line[0]);
+		free(temp);
+	}
+	close(fd);
 }
