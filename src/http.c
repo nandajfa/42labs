@@ -6,33 +6,53 @@
 /*   By: jefernan <jefernan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 20:23:37 by jefernan          #+#    #+#             */
-/*   Updated: 2022/07/30 20:23:37 by jefernan         ###   ########.fr       */
+/*   Updated: 2022/08/02 21:20:31 by jefernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "monitoring.h"
 
-int http(void)
+int protocol_http(char **line, t_http *http)
 {
-    CURL *curl;
-    CURLcode response;
+	CURL *curl;
+	CURLcode response;
+	FILE *fp;
 
-    curl_global_init(CURL_GLOBAL_ALL);
+	init_shttp(line, http);
+	curl_global_init(CURL_GLOBAL_ALL);
 
-    curl = curl_easy_init();
+	fp = fopen("monitoring.log", "at");
+	curl = curl_easy_init();
 
-    if (curl)
-    {
-        curl_easy_setopt(curl, CURLOPT_URL, "https://profile.intra.42.fr/");
-        curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
-        //curl_easy_setopt(curl, CURLOPT_HEADER, 1L);
-        response = curl_easy_perform(curl);
-        if (response != CURLE_OK)
-            fprintf(stderr, "Request failed: %s\n", curl_easy_strerror(response));
-        else
-            printf("%d\n", response);
-        curl_easy_cleanup(curl);
-    }
-    curl_global_cleanup();
-    return (0);
+	if (curl)
+	{
+		curl_easy_setopt(curl, CURLOPT_URL, http->route);
+		curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
+		curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "GET");
+		//curl_easy_setopt(curl, CURLOPT_WRITEDATA, fp);
+
+		response = curl_easy_perform(curl);
+		if (response != CURLE_OK)
+			fprintf(stderr, "Request failed: %s\n", curl_easy_strerror(response));
+		else
+		{
+			printf("%d\n", response);
+			fprintf(fp, "%d\n", response);
+		}
+
+		curl_easy_cleanup(curl);
+	}
+	fclose(fp);
+	curl_global_cleanup();
+	return (0);
+}
+
+void init_shttp(char **line, t_http *http)
+{
+	http->name = line[0];
+	http->protocol = line[1];
+	http->route = line[2];
+	http->method = line[3];
+	http->status = line[4];
+	http->interval = line[5];
 }
