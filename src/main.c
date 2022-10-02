@@ -6,7 +6,7 @@
 /*   By: jefernan <jefernan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:00:01 by jefernan          #+#    #+#             */
-/*   Updated: 2022/08/03 15:28:03 by jefernan         ###   ########.fr       */
+/*   Updated: 2022/10/01 20:14:02 by jefernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int open_file(t_http *http, t_ping *ping, t_dns *dns)
 	char *temp;
 	char	**line;
 
-	fd = open("src/monitoring.db", O_RDONLY);
+	fd = open(FILEDB, O_RDONLY);
 	if (fd < 0)
 	{
 		fprintf(stderr, "Fail to read 'monitoring.db'\n");
@@ -51,6 +51,7 @@ int open_file(t_http *http, t_ping *ping, t_dns *dns)
 		free_line(line);
 	}
 	close(fd);
+	return (0);
 }
 
 void	free_line(char **line)

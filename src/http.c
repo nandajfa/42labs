@@ -6,7 +6,7 @@
 /*   By: jefernan <jefernan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 20:23:37 by jefernan          #+#    #+#             */
-/*   Updated: 2022/08/03 15:28:48 by jefernan         ###   ########.fr       */
+/*   Updated: 2022/10/01 21:09:35 by jefernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,32 +15,33 @@
 
 int protocol_http(char **line, t_http *http)
 {
-	CURL *curl;
-	CURLcode response;
-	FILE *fp;
+	CURL		*curl;
+	CURLcode	response;
+	FILE		*fp;
 
-	init_shttp(line, http);
 	curl_global_init(CURL_GLOBAL_ALL);
 
-	fp = fopen("monitoring.log", "at");
 	curl = curl_easy_init();
-
+	fp = fopen("monitoring.log", "at");
+	init_shttp(line, http);
 	if (curl)
 	{
-		curl_easy_setopt(curl, CURLOPT_URL, http->route);
+
+		curl_easy_setopt(curl, CURLOPT_URL, http->address);
 		curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
 		curl_easy_setopt(curl, CURLOPT_WRITEDATA, fp);
+		curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "GET");
 		curl_easy_setopt(curl, CURLOPT_STDERR, fp);
-
 		response = curl_easy_perform(curl);
 		if (response != CURLE_OK)
 			fprintf(stderr, "Request failed: %s\n", curl_easy_strerror(response));
-
+		curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &http->response_code);
 		curl_easy_cleanup(curl);
 	}
+	print_http(http, fp);
 	fclose(fp);
 	curl_global_cleanup();
-	print_log_http(http);
+	//sleep(http->interval);
 	return (0);
 }
 
@@ -48,38 +49,36 @@ void init_shttp(char **line, t_http *http)
 {
 	http->name = line[0];
 	http->protocol = line[1];
-	http->route = line[2];
+	http->address = line[2];
+	http->method = line[3];
+	http->http_code = ft_atoi(line[4]);
+	http->interval = ft_atoi(line[5]);
 }
 
-void	print_log_http(t_http *http)
+void	print_http(t_http *http, FILE *fp)
 {
-	int fd;
-	char	*temp;
-	char	**str_line;
-
-	fd = open("monitoring.log", O_RDONLY);
-	if (fd < 0)
-	{
-		fprintf(stderr, "Fail to read 'monitoring.log'\n");
-		exit(EXIT_FAILURE);
-	}
-	printf("=================================monitoring http=================================\n");
+	printf("%s==================================monitoring http=================================\n%s", UNDER_BLUE, RESET);
 	printf("Name: %s\n", http->name);
 	printf("Protocol: %s\n", http->protocol);
-	while (1)
-	{
-		temp = get_next_line(fd);
-		if (temp == NULL)
-			break ;
-		str_line = ft_split(temp, '\n');
-		if (ft_strncmp("< Location:", *str_line, ft_strlen("< Location:")) == 0)
-			printf("Adress: %s\n", str_line[0]);
-		if (ft_strncmp("> GET", str_line[0], ft_strlen("> GET")) == 0)
-			printf("Method: %s\n", str_line[0]);
-		if (ft_strncmp("< HTTP", str_line[0], ft_strlen("< HTTP")) == 0)
-			printf("Status: %s\n", str_line[0]);
-		free(temp);
-		free_line(str_line);
-	}
-	close(fd);
+	printf("Address: %s\n", http->address);
+	printf("Method: %s\n", http->method);
+	printf("Expected code: %d\n", http->http_code);
+	if (http->response_code != 200)
+		printf("%s | Status: KO | %s\n", RED, RESET);
+	else
+		printf("%s  | Status: OK | %s\n", GREEN, RESET);
+	printf("%s==================================================================================\n\n%s", UNDER_BLUE, RESET);
+
+	fprintf(fp, "==================================monitoring http=================================\n");
+	fprintf(fp, "Name: %s\n", http->name);
+	fprintf(fp, "Protocol: %s\n", http->protocol);
+	fprintf(fp, "Address: %s\n", http->address);
+	fprintf(fp, "Method: %s\n", http->method);
+	fprintf(fp, "Expected code: %d\n", http->http_code);
+	if (http->response_code != 200)
+		fprintf(fp, " | Status: KO | \n");
+	else
+		fprintf(fp, " | Status: OK | \n");
+	fprintf(fp, "==================================================================================\n\n");
 }
+
