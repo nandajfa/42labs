@@ -6,9 +6,15 @@
 /*   By: jefernan <jefernan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 08:39:47 by jefernan          #+#    #+#             */
-/*   Updated: 2022/08/03 08:39:57 by jefernan         ###   ########.fr       */
+/*   Updated: 2022/10/13 19:40:24 by jefernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "monitoring.h"
 
+int protocol_ping(char **line, t_ping *ping)
+{
+	t_data data;
+
+	
+}

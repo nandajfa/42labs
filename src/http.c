@@ -6,7 +6,7 @@
 /*   By: jefernan <jefernan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 20:23:37 by jefernan          #+#    #+#             */
-/*   Updated: 2022/10/01 21:09:35 by jefernan         ###   ########.fr       */
+/*   Updated: 2022/10/13 19:37:18 by jefernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,29 +17,29 @@ int protocol_http(char **line, t_http *http)
 {
 	CURL		*curl;
 	CURLcode	response;
-	FILE		*fp;
+	t_data		data;
 
 	curl_global_init(CURL_GLOBAL_ALL);
 
 	curl = curl_easy_init();
-	fp = fopen("monitoring.log", "at");
+	data.monitoring = fopen("monitoring.log", "at");
 	init_shttp(line, http);
 	if (curl)
 	{
 
 		curl_easy_setopt(curl, CURLOPT_URL, http->address);
 		curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
-		curl_easy_setopt(curl, CURLOPT_WRITEDATA, fp);
+		curl_easy_setopt(curl, CURLOPT_WRITEDATA, data.monitoring);
 		curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "GET");
-		curl_easy_setopt(curl, CURLOPT_STDERR, fp);
+		curl_easy_setopt(curl, CURLOPT_STDERR, data.monitoring);
 		response = curl_easy_perform(curl);
 		if (response != CURLE_OK)
 			fprintf(stderr, "Request failed: %s\n", curl_easy_strerror(response));
 		curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &http->response_code);
 		curl_easy_cleanup(curl);
 	}
-	print_http(http, fp);
-	fclose(fp);
+	print_http(http, data.monitoring);
+	fclose(data.monitoring);
 	curl_global_cleanup();
 	//sleep(http->interval);
 	return (0);

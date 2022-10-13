@@ -1,4 +1,5 @@
 test	HTTP	example.com	GET	200	30
+git		HTTP	https://github.com/	GET	200	30
 game ping test	PING	game.42sp.org.br	60
 nome	Protocolo	endereço	intervalo	servidor DNS
 intra	HTTP	intra.42.fr	GET	200	5

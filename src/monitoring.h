@@ -6,7 +6,7 @@
 /*   By: jefernan <jefernan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 19:31:41 by jefernan          #+#    #+#             */
-/*   Updated: 2022/10/01 21:04:04 by jefernan         ###   ########.fr       */
+/*   Updated: 2022/10/13 19:29:28 by jefernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include <unistd.h>
 
 #define FILEDB		"./src/monitoring.db"
+#define FILELOG		"monitoring.log"
 
 //  - Colors
 #define RED			"\e[0;31m"
@@ -59,7 +60,8 @@ typedef struct s_dns
 
 typedef struct s_data
 {
-	char *line;
+	FILE	*monitoring;
+	int		db;
 } t_data;
 
 int		open_file(t_http *http, t_ping *ping, t_dns *dns);
