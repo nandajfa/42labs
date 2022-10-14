@@ -51,7 +51,7 @@ make clean
 make fclean
 
 # Remove o aquivo monitoring.log
-make cleanLog
+make cfile
 
 # Recompila o programa
 make re
