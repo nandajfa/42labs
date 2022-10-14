@@ -9,7 +9,7 @@ BLUE = \33[1;34m
 RST = \033[0m
 
 vpath %.c src get_next_line
-SRCS = main.c http.c get_next_line.c get_next_line_utils.c ft_split.c \
+SRCS = main.c http.c get_next_line.c get_next_line_utils.c  \
 		utils.c ping.c dns.c
 
 OBJ_DIR = ./objs
