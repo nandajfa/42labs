@@ -6,7 +6,7 @@
 /*   By: jefernan <jefernan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 08:39:47 by jefernan          #+#    #+#             */
-/*   Updated: 2022/10/13 22:36:26 by jefernan         ###   ########.fr       */
+/*   Updated: 2022/10/14 10:43:28 by jefernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,9 @@ int protocol_ping(char **line, t_ping *ping)
 	data.monitoring = fopen("monitoring.log", "at");
 	init_sping(line, ping);
 	if (pipe(fd) == -1)
-	{
-		printf("Error pipe");
-		exit(1);
-	}
-	pid = fork();
-	if (pid == -1)
-	{
-		printf("Error fork");
-		exit(1);
-	}
+		perror("pipe");
+	if ((pid = fork()) == -1)
+		perror("fork");
 	else if (pid == 0)
 	{
 		close(fd[0]);
@@ -94,9 +87,9 @@ void	print_ping(t_ping *ping, char *line, FILE *fp)
 		printf("%s==================================================================================\n\n%s", UNDER_BLUE, RESET);
 
 		fprintf(fp, "Name: %s\n", ping->name);
-		fprintf(fp, "Name: %s\n", ping->protocol);
-		fprintf(fp, "Name: %s\n", ping->address);
-		fprintf(fp, "Name: %s\n", line);
+		fprintf(fp, "Protocol: %s\n", ping->protocol);
+		fprintf(fp, "Address: %s\n", ping->address);
+		fprintf(fp, "%s\n", line);
 		if (ft_strnstr(line, "1 received", ft_strlen(line)))
 			fprintf(fp, " | Status: OK | \n");
 		else

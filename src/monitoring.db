@@ -1,4 +1,8 @@
 test	HTTP	example.com	GET	200	30
 git		HTTP	https://github.com/	GET	200	30
-game ping test	PING	example.com	60
+ping test	PING	example.com	60
+ping google	PING	google.com	30
+dns google	DNS	google.com	30	8.8.8.8
+dns hostinger	DNS	hostinger.com	30	8.8.8.8
+dns test	DNS	example.com	10	8.8.8.8
 nome	Protocolo	endereço	intervalo	servidor DNS

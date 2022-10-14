@@ -6,7 +6,7 @@
 /*   By: jefernan <jefernan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:00:01 by jefernan          #+#    #+#             */
-/*   Updated: 2022/10/13 21:27:23 by jefernan         ###   ########.fr       */
+/*   Updated: 2022/10/14 09:53:30 by jefernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int open_file(t_http *http, t_ping *ping, t_dns *dns)
 		if (ft_strncmp("PING", line[1], ft_strlen("PING")) == 0)
 			protocol_ping(line, ping);
 		if (ft_strncmp("DNS", line[1], ft_strlen("DNS")) == 0)
-			printf("dns\n");
+			protocol_dns(line, dns);
 		free(temp);
 		free_line(line);
 	}

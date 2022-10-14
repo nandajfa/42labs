@@ -6,7 +6,7 @@
 /*   By: jefernan <jefernan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 19:31:41 by jefernan          #+#    #+#             */
-/*   Updated: 2022/10/13 22:25:20 by jefernan         ###   ########.fr       */
+/*   Updated: 2022/10/14 10:30:40 by jefernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,11 @@ int protocol_ping(char **line, t_ping *ping);
 void	init_sping(char **line, t_ping *ping);
 void	read_ping(t_ping *ping, int fd, FILE *fp);
 void	print_ping(t_ping *ping, char *line, FILE *fp);
+
+//DNS
+int	protocol_dns(char **line, t_dns *dns);
+void	init_sdns(char **line, t_dns *dns);
+void	read_dns(t_dns *dns, int fd, FILE *fp);
+void	print_dns(t_dns *dns, char *line, FILE *fp);
 
 #endif
