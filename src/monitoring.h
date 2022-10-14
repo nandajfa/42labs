@@ -6,7 +6,7 @@
 /*   By: jefernan <jefernan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 19:31:41 by jefernan          #+#    #+#             */
-/*   Updated: 2022/10/13 19:29:28 by jefernan         ###   ########.fr       */
+/*   Updated: 2022/10/13 22:25:20 by jefernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 #include <fcntl.h> // open O_RDONLY
 #include <stdlib.h> //malloc
 #include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
 #define FILEDB		"./src/monitoring.db"
 #define FILELOG		"monitoring.log"
@@ -65,16 +67,24 @@ typedef struct s_data
 } t_data;
 
 int		open_file(t_http *http, t_ping *ping, t_dns *dns);
-char	**ft_split(char const *s, char c);
-int		validation(char *line);
-char	**str(char *input);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
-int		protocol_http(char **line, t_http *http);
-void	init_shttp(char **line, t_http *http);
-int		log_http(t_http *http, int pipe, int log);
 void	free_line(char **line);
+
+// UTILS
+char	**ft_split(char const *s, char c);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_atoi(const char *str);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
+
+// HTTP
+int		protocol_http(char **line, t_http *http);
+void	init_shttp(char **line, t_http *http);
 void	print_http(t_http *http, FILE *fp);
+
+// PING
+int protocol_ping(char **line, t_ping *ping);
+void	init_sping(char **line, t_ping *ping);
+void	read_ping(t_ping *ping, int fd, FILE *fp);
+void	print_ping(t_ping *ping, char *line, FILE *fp);
 
 #endif
