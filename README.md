@@ -77,6 +77,6 @@ Primeiro projeto da 42, onde recodificamos funções da biblioteca C padrão. Al
 
 * ➡️ [Notion](https://grizzled-turtle-393.notion.site/42-Labs-2de8c9e246074f83adb3298dcaf3d000)
 
- #### Author
+ #### Autor
 
 Made by jessica Fernanda 👋 [See my linkedin](https://www.linkedin.com/in/jessica-fernanda-alves-marques-106651205/)
