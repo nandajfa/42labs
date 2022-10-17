@@ -5,7 +5,7 @@
  [![NPM](https://img.shields.io/npm/l/react)](https://github.com/nandajfa/42labs/blob/main/LICENSE)
 
 
-  ## 🗣️ About
+  ## 🗣️ Sobre
 
 > _Aplicação de monitoramento de serviços web._
 
