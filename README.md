@@ -75,7 +75,7 @@ Primeiro projeto da 42, onde recodificamos funções da biblioteca C padrão. Al
 
 ### 📑 Planejamento e Referências
 
-* ➡️ [Notion]([https://grizzled-turtle-393.notion.site/42-Labs-2de8c9e246074f83adb3298dcaf3d000](https://grizzled-turtle-393.notion.site/42-Labs-2de8c9e246074f83adb3298dcaf3d000)
+* ➡️ [Notion]([https://grizzled-turtle-393.notion.site/42-Labs-2de8c9e246074f83adb3298dcaf3d000](https://grizzled-turtle-393.notion.site/42-Labs-2de8c9e246074f83adb3298dcaf3d000))
 
  #### Autor
 
