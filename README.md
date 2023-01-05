@@ -32,7 +32,7 @@ game ping test	PING	game.42sp.org.br	60
 workspaces monitoring	PING	workspaces.42sp.org.br	60
 ```
 
-## Como usar
+## 🛠️ Como usar
 **Siga os passos abaixo**
 ```bash
 # Clonar o projeto e acessar a pasta
@@ -77,6 +77,15 @@ Primeiro projeto da 42, onde recodificamos funções da biblioteca C padrão. Al
 
 * ➡️ [Notion](https://grizzled-turtle-393.notion.site/42-Labs-2de8c9e246074f83adb3298dcaf3d000)
 
- #### Autor
+ <div align="center">
+ 
+  ## Autor
+ 
+ | [<img src="https://avatars.githubusercontent.com/u/80687429?v=4" width=115><br><sub>Jessica Fernanda</sub>](https://github.com/nandajfa) |
+ | :---: |
+ 
+ [![Linkedin Badge](https://img.shields.io/badge/-Jessica-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/jessica-fernanda-106651205)](https://www.linkedin.com/in/jessica-fernanda-106651205) 
+[![Gmail Badge](https://img.shields.io/badge/-nanda.jfa@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:nanda.jfa@gmail.com)](mailto:nanda.jfa@gmail.com)
 
-Made by jessica Fernanda 👋 [See my linkedin](https://www.linkedin.com/in/jessica-fernanda-106651205)
+
+</div>
